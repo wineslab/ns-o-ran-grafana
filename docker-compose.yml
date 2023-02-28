@@ -33,6 +33,14 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+  
+  ns3:
+    build: ./statsd_ns3
+    stdin_open: true
+    tty: true
+    network_mode: "host"
+    depends_on:
+      - telegraf
 
 volumes:
   grafana_data: {}
