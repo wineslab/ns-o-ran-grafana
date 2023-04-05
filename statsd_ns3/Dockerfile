@@ -37,11 +37,10 @@ RUN ./waf build
 
 WORKDIR /workspace
 
-# Install statsd library
+# Install dependencies for script
 
-RUN pip3 install statsd
-RUN mkdir /workspace/python_example
-COPY statsd-test.py /workspace/python_example
+RUN pip3 install statsd joblib numpy watchdog
+COPY sem_callback.py /workspace/ns3-mmwave-oran/
 
 WORKDIR /workspace
 
