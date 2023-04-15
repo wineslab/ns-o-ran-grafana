@@ -1,8 +1,6 @@
-# Example Docker Compose project for Telegraf, InfluxDB and Grafana
+# Graphical Visualization of simulated ns3 data with Grafana
 
-This an example project to show the TIG (Telegraf, InfluxDB and Grafana) stack.
-
-![Example Screenshot](./example.png?raw=true "Example Screenshot")
+This example showcases graphical data visualization using Grafana. Data is extracted from a 5G ns3 simulation into csv files and sent to an InfluxDB server via Telegraf. Grafana then gathers data and plots it on a dashboard, allowing for easier analysis and interpretation. The demo dashboard we created showcases two metrics, "pdcp_latency" and "tx_bytes," which were generated from the cu-up-cell-1.txt file within the simulation container. However, this is just a small sample of the vast amount of data that is going to be visualized in this way.
 
 ## Services and Ports
 
