@@ -50,11 +50,10 @@ class SimWatcher(PatternMatchingEventHandler):
                 if key not in self.consumed_keys:
                     if key not in self.kpm_map:
                          self.kpm_map[key] = [None, None, None]
-
-                    '''not necessary now'''
-                    '''if 'L3 serving Id(m_cellId)' in row:
-                        sinr = float(row['L3 serving Id(m_cellId)'])
-                        self.kpm_map[key][0] = sinr'''
+                    
+                    if 'ueImsiComplete' in row:
+                        ue = row['ueImsiComplete']
+                        self.kpm_map[0] = ue
 
                     if 'DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)' in row:
                         tx_bytes = float(row['DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)'])
@@ -67,21 +66,24 @@ class SimWatcher(PatternMatchingEventHandler):
                     # check if both have been filled and send the data to telegraf
                     if self.kpm_map[key][1] is not None and self.kpm_map[key][2] is not None:
                         self.consumed_keys.add(key)
-                        self.send_to_telegraf(tx_bytes=self.kpm_map[key][1], pdcp_latency=self.kpm_map[key][2])
+                        self.send_to_telegraf(ue=self.kpm_map[0], tx_bytes=self.kpm_map[key][1], pdcp_latency=self.kpm_map[key][2])
                 
         lock.release()
 
     def on_closed(self, event):
         super().on_closed(event)
 
-    def send_to_telegraf(self, tx_bytes, pdcp_latency):
+    def send_to_telegraf(self, ue, tx_bytes, pdcp_latency):
         # connect to Telegraf
         statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
 
         # collect data and send it to telegraf
+        
         pipe = statsd_client.pipeline()
-        pipe.gauge(stat='tx_bytes', value=tx_bytes)
-        pipe.gauge(stat='pdcp_latency', value=pdcp_latency)
+        stat_tx = 'tx_bytes_' + ue
+        stat_pdcp_latency = 'pdcp_latency_' + ue
+        pipe.gauge(stat=stat_tx, value=tx_bytes)
+        pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency)
         time.sleep(5)
         pipe.send()
         statsd_client.close()

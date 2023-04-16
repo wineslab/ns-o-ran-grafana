@@ -15,9 +15,90 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 5,
   "links": [],
   "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "query": "SELECT \"value\" FROM /tx_bytes_[0-9]{5}/ WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
+          "rawQuery": true,
+          "refId": "tx_bytes"
+        }
+      ],
+      "title": "Tx_Bytes",
+      "type": "timeseries"
+    },
     {
       "datasource": null,
       "fieldConfig": {
@@ -71,10 +152,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 21,
+        "h": 11,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 12
       },
       "id": 2,
       "options": {
@@ -89,7 +170,7 @@
       },
       "targets": [
         {
-          "alias": "pdcp_latency",
+          "alias": "",
           "groupBy": [
             {
               "params": [
@@ -107,7 +188,7 @@
           "measurement": "pdcp_latency",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value\" FROM \"pdcp_latency\" WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
+          "query": "SELECT \"value\" FROM /pdcp_latency_[0-9]{5}/ WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
           "rawQuery": true,
           "refId": "pdcp_latency",
           "resultFormat": "time_series",
@@ -132,55 +213,9 @@
               "value": "gauge"
             }
           ]
-        },
-        {
-          "alias": "tx_bytes",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "tx_bytes",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"value\" FROM \"tx_bytes\" WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
-          "rawQuery": true,
-          "refId": "tx_bytes",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "metric_type",
-              "operator": "=",
-              "value": "gauge"
-            }
-          ]
         }
       ],
-      "title": "Demo",
+      "title": "Pdcp_Latency",
       "type": "timeseries"
     }
   ],
@@ -203,5 +238,5 @@
   "timezone": "",
   "title": "Demo",
   "uid": "SDOyaFLVz",
-  "version": 3
+  "version": 4
 }
