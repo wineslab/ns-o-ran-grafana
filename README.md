@@ -33,14 +33,14 @@ $ docker compose up
 
 ## Run the python script
 ```bash
-$ docker compose exec ns3 /bin/sh
+$ docker compose exec ns3 /bin/bash
 $ cd ns3-mmwave-oran
 $ python3 sem_callback.py
 ```
 
 ## Run the ns3 simulation
 ```bash
-$ docker compose exec ns3 /bin/sh
+$ docker compose exec ns3 /bin/bash
 $ cd ns3-mmwave-oran
 $ ./waf --run "scratch/scenario-zero.cc --enableE2FileLogging=1"
 ```
