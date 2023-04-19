@@ -84,7 +84,6 @@ class SimWatcher(PatternMatchingEventHandler):
         stat_pdcp_latency = 'pdcp_latency_' + ue
         pipe.gauge(stat=stat_tx, value=tx_bytes)
         pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency)
-        time.sleep(5)
         pipe.send()
         statsd_client.close()
         
