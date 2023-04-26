@@ -39,7 +39,8 @@ WORKDIR /workspace
 
 # Install dependencies for script
 
-RUN pip3 install statsd joblib numpy watchdog
+RUN pip3 install statsd joblib numpy watchdog statsd-tags
+RUN pip3 install statsd-telegraf --user
 COPY sem_callback.py /workspace/ns3-mmwave-oran/
 
 WORKDIR /workspace

@@ -1,9 +1,5 @@
 import csv
-import os
-import random
 from typing import Dict, List, Set, Tuple
-
-import joblib
 import numpy as np
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
@@ -66,28 +62,29 @@ class SimWatcher(PatternMatchingEventHandler):
                     # check if both have been filled and send the data to telegraf
                     if self.kpm_map[key][1] is not None and self.kpm_map[key][2] is not None:
                         self.consumed_keys.add(key)
-                        self.send_to_telegraf(ue=self.kpm_map[0], tx_bytes=self.kpm_map[key][1], pdcp_latency=self.kpm_map[key][2])
+                        self.send_to_telegraf(ue=self.kpm_map[0], tx_bytes=self.kpm_map[key][1], pdcp_latency=self.kpm_map[key][2], timestamp=timestamp)
                 
         lock.release()
 
     def on_closed(self, event):
         super().on_closed(event)
 
-    def send_to_telegraf(self, ue, tx_bytes, pdcp_latency):
+    def send_to_telegraf(self, ue, tx_bytes, pdcp_latency, timestamp):
         # connect to Telegraf
         statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
 
-        # collect data and send it to telegraf
-        
-        pipe = statsd_client.pipeline()
+        # send data to telegraf
+
+        # convert timestamp in nanoseconds (InfluxDB)
+        timestamp = timestamp*(pow(10,6))
         stat_tx = 'tx_bytes_' + ue
         stat_pdcp_latency = 'pdcp_latency_' + ue
-        pipe.gauge(stat=stat_tx, value=tx_bytes)
-        pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency)
+        pipe = statsd_client.pipeline()
+        pipe.gauge(stat=stat_tx, value=tx_bytes, tags={'timestamp':timestamp, 'tx_bytes':tx_bytes})
+        pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency, tags={'timestamp':timestamp, 'pdcp_latency':pdcp_latency})
         pipe.send()
-        statsd_client.close()
-        
-        
+
+
 if __name__ == "__main__":
     event_handler = SimWatcher()
     observer = Observer()
