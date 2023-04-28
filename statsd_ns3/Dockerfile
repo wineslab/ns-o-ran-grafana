@@ -25,7 +25,7 @@ RUN ldconfig
 WORKDIR /workspace
 
 # Install ns-3
-RUN apt-get install -y g++ python3 qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools && apt install -y python3-pip
+RUN apt-get install -y g++ python3 python3-pip
 
 RUN git clone -b release https://github.com/wineslab/ns-o-ran-ns3-mmwave /workspace/ns3-mmwave-oran
 RUN git clone -b master https://github.com/o-ran-sc/sim-ns3-o-ran-e2 /workspace/ns3-mmwave-oran/contrib/oran-interface
