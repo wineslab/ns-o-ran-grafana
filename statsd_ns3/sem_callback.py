@@ -77,6 +77,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = timestamp*(pow(10,6))
+        pdcp_latency = pdcp_latency*(pow(10, -1))
         stat_tx = 'tx_bytes_' + ue
         stat_pdcp_latency = 'pdcp_latency_' + ue
         pipe = statsd_client.pipeline()

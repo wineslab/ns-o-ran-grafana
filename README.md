@@ -45,6 +45,11 @@ $ cd ns3-mmwave-oran
 $ ./waf --run "scratch/scenario-zero.cc --enableE2FileLogging=1"
 ```
 
+You may want to set the following options in the last command:
+1. `--RngRun=n`, where n is a positive integer representing the seed for the pseudo-random number generator.
+2. `--simTime=x`, where x is the simulation time (in seconds)
+
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
