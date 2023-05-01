@@ -227,8 +227,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-01T14:42:50.000Z",
-    "to": "2023-05-01T14:42:52.000Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
