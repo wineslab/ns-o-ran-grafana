@@ -107,7 +107,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "Latency (ms)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -147,7 +146,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -219,7 +219,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -227,8 +227,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-04-30T16:31:46.250Z",
-    "to": "2023-04-30T16:31:49.410Z"
+    "from": "2023-05-01T14:42:50.000Z",
+    "to": "2023-05-01T14:42:52.000Z"
   },
   "timepicker": {
     "refresh_intervals": [
