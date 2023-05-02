@@ -90,7 +90,6 @@ class SimWatcher(PatternMatchingEventHandler):
 
     def send_to_telegraf_up(self, ue, values):
         # connect to Telegraf
-        print(values)
         statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
 
         # send data to telegraf
@@ -98,11 +97,27 @@ class SimWatcher(PatternMatchingEventHandler):
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
         pdcp_latency = values[7]*(pow(10, -1))
-        stat_tx = 'tx_bytes_' + ue
-        stat_pdcp_latency = 'pdcp_latency_' + ue
+
         pipe = statsd_client.pipeline()
+
+        stat_avg_lat = 'avg_latency_' + ue
+        pipe.gauge(stat=stat_avg_lat, value = values[2], tags={'timestamp':timestamp})
+
+        stat_cellDlTxVolume = 'tx_volume_' + ue
+        pipe.gauge(stat=stat_cellDlTxVolume, value=values[4], tags={'timestamp':timestamp})
+
+        stat_tx = 'tx_bytes_' + ue
         pipe.gauge(stat=stat_tx, value=values[5], tags={'timestamp':timestamp})
-        pipe.gauge(stat=stat_pdcp_latency, value=values[7], tags={'timestamp':timestamp})
+
+        stat_txDlPackets = 'tx_packets_' + ue
+        pipe.gauge(stat=stat_txDlPackets, value=values[6], tags={'timestamp':timestamp})
+
+        stat_pdcp_throughput = 'pdcp_throughput_' + ue
+        pipe.gauge(stat=stat_pdcp_throughput, value=values[7], tags={'timestamp':timestamp})
+
+        stat_pdcp_latency = 'pdcp_latency_' + ue
+        pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency, tags={'timestamp':timestamp})
+        
         pipe.send()
 
     def send_to_telegraf_cp(self, ue, values):
