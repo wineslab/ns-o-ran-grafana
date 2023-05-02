@@ -93,7 +93,7 @@
           "refId": "A"
         }
       ],
-      "title": "tx_volume",
+      "title": "m_pDCPBytesDL (cellDlTxVolume)",
       "type": "timeseries"
     },
     {
@@ -213,7 +213,7 @@
           ]
         }
       ],
-      "title": "Pdcp_Latency",
+      "title": "DRB.PdcpSduDelayDl.UEID (pdcpLatency)",
       "type": "timeseries"
     },
     {
@@ -292,7 +292,7 @@
           "refId": "A"
         }
       ],
-      "title": "tx_packets",
+      "title": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
       "type": "timeseries"
     },
     {
@@ -371,7 +371,7 @@
           "refId": "A"
         }
       ],
-      "title": "Avg_latency",
+      "title": "DRB.PdcpSduDelayDl (cellAverageLatency)",
       "type": "timeseries"
     },
     {
@@ -453,7 +453,7 @@
           "refId": "tx_bytes"
         }
       ],
-      "title": "Tx_Bytes",
+      "title": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
       "type": "timeseries"
     },
     {
@@ -532,7 +532,7 @@
           "refId": "A"
         }
       ],
-      "title": "pdcp_throughput",
+      "title": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
       "type": "timeseries"
     },
     {
@@ -556,8 +556,8 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-05-02T13:44:37.000Z",
+    "to": "2023-05-02T13:44:39.000Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -567,5 +567,5 @@
   "timezone": "",
   "title": "Demo",
   "uid": "SDOyaFLVz",
-  "version": 4
+  "version": 1
 }
