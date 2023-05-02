@@ -6,6 +6,7 @@ from watchdog.observers import Observer
 import threading
 import time
 from statsd import StatsClient
+import re
 
 lock = threading.Lock()
 
@@ -38,52 +39,86 @@ class SimWatcher(PatternMatchingEventHandler):
         lock.acquire()
         with open(event.src_path, 'r') as file:
             reader = csv.DictReader(file)
+
             for row in reader:
-                #print(f"The file {event.src_path} has been modified!") 
                 timestamp = int(row['timestamp'])
                 ue_imsi = int(row['ueImsiComplete'])
+                ue = row['ueImsiComplete']
                 key = (timestamp, ue_imsi)
                 if key not in self.consumed_keys:
-                    if key not in self.kpm_map:
-                         self.kpm_map[key] = [None, None, None]
-                    
-                    if 'ueImsiComplete' in row:
-                        ue = row['ueImsiComplete']
-                        self.kpm_map[0] = ue
 
-                    if 'DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)' in row:
-                        tx_bytes = float(row['DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)'])
-                        self.kpm_map[key][1] = tx_bytes
+                    if re.search('cu-up-cell-[1-5].txt', file.name):
+                        if key not in self.kpm_map:
+                            self.kpm_map[key] = []
 
-                    if 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)' in row:
-                        pdcp_latency = float(row['DRB.PdcpSduDelayDl.UEID (pdcpLatency)'])
-                        self.kpm_map[key][2] = pdcp_latency
+                        for column_name in reader.fieldnames:
+                            if row[column_name] == '':
+                                continue
+                            self.kpm_map[key].append(float(row[column_name]))
 
-                    # check if both have been filled and send the data to telegraf
-                    if self.kpm_map[key][1] is not None and self.kpm_map[key][2] is not None:
                         self.consumed_keys.add(key)
-                        self.send_to_telegraf(ue=self.kpm_map[0], tx_bytes=self.kpm_map[key][1], pdcp_latency=self.kpm_map[key][2], timestamp=timestamp)
-                
+                        self.send_to_telegraf_up(ue=ue, values=self.kpm_map[key])
+
+                    if re.search('cu-cp-cell-[2-5].txt', file.name):
+                        if key not in self.kpm_map:
+                            self.kpm_map[key] = []
+
+                        for column_name in reader.fieldnames:
+                            if row[column_name] == '':
+                                continue
+                            self.kpm_map[key].append(float(row[column_name]))
+
+                        self.consumed_keys.add(key)
+                        self.send_to_telegraf_cp(ue=ue, values=self.kpm_map[key])
+
+                    if re.search('du-cell-[2-5].txt', file.name):
+                        if key not in self.kpm_map:
+                            self.kpm_map[key] = []
+
+                        for column_name in reader.fieldnames:
+                            if row[column_name] == '':
+                                continue
+                            self.kpm_map[key].append(float(row[column_name]))
+
+                        self.consumed_keys.add(key)
+                        self.send_to_telegraf_du(ue=ue, values=self.kpm_map[key])
+
         lock.release()
 
     def on_closed(self, event):
         super().on_closed(event)
 
-    def send_to_telegraf(self, ue, tx_bytes, pdcp_latency, timestamp):
+    def send_to_telegraf_up(self, ue, values):
         # connect to Telegraf
+        print(values)
         statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
 
         # send data to telegraf
 
         # convert timestamp in nanoseconds (InfluxDB)
-        timestamp = timestamp*(pow(10,6))
-        pdcp_latency = pdcp_latency*(pow(10, -1))
+        timestamp = int(values[0]*(pow(10,6))) # int because of starlark
+        pdcp_latency = values[7]*(pow(10, -1))
         stat_tx = 'tx_bytes_' + ue
         stat_pdcp_latency = 'pdcp_latency_' + ue
         pipe = statsd_client.pipeline()
-        pipe.gauge(stat=stat_tx, value=tx_bytes, tags={'timestamp':timestamp, 'tx_bytes':tx_bytes})
-        pipe.gauge(stat=stat_pdcp_latency, value=pdcp_latency, tags={'timestamp':timestamp, 'pdcp_latency':pdcp_latency})
+        pipe.gauge(stat=stat_tx, value=values[5], tags={'timestamp':timestamp})
+        pipe.gauge(stat=stat_pdcp_latency, value=values[7], tags={'timestamp':timestamp})
         pipe.send()
+
+    def send_to_telegraf_cp(self, ue, values):
+
+        statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
+
+        # convert timestamp in nanoseconds (InfluxDB)
+        timestamp = int(values[0]*(pow(10,6))) # int because of starlark
+
+
+    def send_to_telegraf_du(self, ue, values):
+
+        statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
+
+        # convert timestamp in nanoseconds (InfluxDB)
+        timestamp = int(values[0]*(pow(10,6))) # int because of starlark
 
 
 if __name__ == "__main__":
@@ -99,4 +134,6 @@ if __name__ == "__main__":
         observer.stop()
     
     observer.join()
-        
+
+
+
