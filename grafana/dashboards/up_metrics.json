@@ -88,7 +88,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /tx_volume_[0-9]{5}/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /m_pDCPBytesDL\\(cellDlTxVolume\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -186,7 +186,7 @@
           "measurement": "pdcp_latency",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"value\" FROM /pdcp_latency_[0-9]{5}/ WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduDelayDl.UEID\\(pdcpLatency\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "pdcp_latency",
           "resultFormat": "time_series",
@@ -287,7 +287,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /tx_packets_[0-9]{5}/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /Tot_PdcpSduNbrDl_UEID\\(txDlPackets\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -366,7 +366,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /avg_latency_[0-9]{5}/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -448,7 +448,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /tx_bytes_[0-9]{5}/ WHERE (\"metric_type\" = 'gauge') AND $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "tx_bytes"
         }
@@ -527,25 +527,13 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /pdcp_throughput_[0-9]{5}/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduBitRateDl.UEID\\(pdcpThroughput\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
       "title": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
       "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 24
-      },
-      "id": 12,
-      "title": "Row title",
-      "type": "row"
     }
   ],
   "refresh": "5s",
@@ -556,8 +544,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-02T13:44:37.000Z",
-    "to": "2023-05-02T13:44:39.000Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -567,5 +555,5 @@
   "timezone": "",
   "title": "Demo",
   "uid": "SDOyaFLVz",
-  "version": 1
+  "version": 2
 }
