@@ -17,10 +17,11 @@ class SimWatcher(PatternMatchingEventHandler):
 
     """
     patterns = ['cu-up-cell-1.txt', 'cu-cp-cell-*.txt', "du-cell-*.txt"]
-    kpm_map: Dict[Tuple[int, int], List] = {}
+    kpm_map: Dict[Tuple[int, int, int], List] = {}
     consumed_keys: Set[Tuple[int, int]]
     telegraf_host = "localhost"
     telegraf_port = 8125
+    statsd_client = StatsClient(telegraf_host, telegraf_port, prefix = None)
 
     def __init__(self):
         PatternMatchingEventHandler.__init__(self, patterns=self.patterns,
@@ -44,11 +45,19 @@ class SimWatcher(PatternMatchingEventHandler):
                 timestamp = int(row['timestamp'])
                 ue_imsi = int(row['ueImsiComplete'])
                 ue = row['ueImsiComplete']
-                key = (timestamp, ue_imsi)
+                
+                if re.search('cu-up-cell-[1-5].txt', file.name):
+                    key = (timestamp, ue_imsi, 0)
+                if re.search('cu-cp-cell-[2-5].txt', file.name):
+                    key = (timestamp, ue_imsi, 1)
+                if re.search('du-cell-[2-5].txt', file.name):
+                    key = (timestamp, ue_imsi, 2)
+
 
                 if key not in self.consumed_keys:
 
                     if re.search('cu-up-cell-[1-5].txt', file.name):
+                        print("ENTRATO UP")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -64,6 +73,7 @@ class SimWatcher(PatternMatchingEventHandler):
                         self.send_to_telegraf_up(ue=ue, values=self.kpm_map[key], fields=fields)
 
                     if re.search('cu-cp-cell-[2-5].txt', file.name):
+                        print("ENTRATO CP")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -79,6 +89,7 @@ class SimWatcher(PatternMatchingEventHandler):
                         self.send_to_telegraf_cp(ue=ue, values=self.kpm_map[key], fields=fields)
 
                     if re.search('du-cell-[2-5].txt', file.name):
+                        print("ENTRATO DU")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -99,12 +110,9 @@ class SimWatcher(PatternMatchingEventHandler):
         super().on_closed(event)
 
     def send_to_telegraf_up(self, ue, values, fields):
-        # connect to Telegraf
-        statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
-
+        
         # send data to telegraf
-
-        pipe = statsd_client.pipeline()
+        pipe = self.statsd_client.pipeline()
 
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
@@ -114,19 +122,14 @@ class SimWatcher(PatternMatchingEventHandler):
         for field in fields:
             stat = field + '_' + ue + '_up'
             stat = stat.replace(' ','')
-            print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
             i+=1
         pipe.send()
 
     def send_to_telegraf_cp(self, ue, values, fields):
-
-        # connect to Telegraf
-        statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
-
+        
         # send data to telegraf
-
-        pipe = statsd_client.pipeline()
+        pipe = self.statsd_client.pipeline()
 
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
@@ -141,13 +144,9 @@ class SimWatcher(PatternMatchingEventHandler):
         pipe.send()
 
     def send_to_telegraf_du(self, ue, values, fields):
-
-        # connect to Telegraf
-        statsd_client = StatsClient(self.telegraf_host, self.telegraf_port, prefix = None)
-
+        
         # send data to telegraf
-
-        pipe = statsd_client.pipeline()
+        pipe = self.statsd_client.pipeline()
 
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
