@@ -112,7 +112,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
         i = 0
         for field in fields:
-            stat = field + '_' + ue
+            stat = field + '_' + ue + '_up'
             stat = stat.replace(' ','')
             print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
@@ -133,7 +133,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
         i = 0
         for field in fields:
-            stat = field + '_' + ue
+            stat = field + '_' + ue + '_cp'
             stat = stat.replace(' ','')
             print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
@@ -154,7 +154,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
         i = 0
         for field in fields:
-            stat = field + '_' + ue
+            stat = field + '_' + ue + '_du'
             stat = stat.replace(' ','')
             print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
