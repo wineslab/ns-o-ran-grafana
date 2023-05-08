@@ -35,7 +35,6 @@ class SimWatcher(PatternMatchingEventHandler):
 
     def on_modified(self, event):
         super().on_modified(event)
-        # print(event.src_path)
 
         lock.acquire()
         with open(event.src_path, 'r') as file:
@@ -57,7 +56,6 @@ class SimWatcher(PatternMatchingEventHandler):
                 if key not in self.consumed_keys:
 
                     if re.search('cu-up-cell-[1-5].txt', file.name):
-                        print("ENTRATO UP")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -73,7 +71,6 @@ class SimWatcher(PatternMatchingEventHandler):
                         self.send_to_telegraf_up(ue=ue, values=self.kpm_map[key], fields=fields)
 
                     if re.search('cu-cp-cell-[2-5].txt', file.name):
-                        print("ENTRATO CP")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -89,7 +86,6 @@ class SimWatcher(PatternMatchingEventHandler):
                         self.send_to_telegraf_cp(ue=ue, values=self.kpm_map[key], fields=fields)
 
                     if re.search('du-cell-[2-5].txt', file.name):
-                        print("ENTRATO DU")
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -138,7 +134,6 @@ class SimWatcher(PatternMatchingEventHandler):
         for field in fields:
             stat = field + '_' + ue + '_cp'
             stat = stat.replace(' ','')
-            print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
             i+=1
         pipe.send()
@@ -155,7 +150,6 @@ class SimWatcher(PatternMatchingEventHandler):
         for field in fields:
             stat = field + '_' + ue + '_du'
             stat = stat.replace(' ','')
-            print(stat)
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
             i+=1
         pipe.send()
