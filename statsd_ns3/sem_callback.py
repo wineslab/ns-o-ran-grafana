@@ -55,7 +55,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
                 if key not in self.consumed_keys:
 
-                    if re.search('cu-up-cell-[1-5].txt', file.name):
+                    if re.search('cu-up-cell-[1-5].txt', file.name) or re.search('du-cell-[2-5].txt', file.name) or re.search('cu-cp-cell-[2-5].txt', file.name):
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -68,44 +68,14 @@ class SimWatcher(PatternMatchingEventHandler):
                             fields.append(column_name)
 
                         self.consumed_keys.add(key)
-                        self.send_to_telegraf_up(ue=ue, values=self.kpm_map[key], fields=fields)
-
-                    if re.search('cu-cp-cell-[2-5].txt', file.name):
-                        if key not in self.kpm_map:
-                            self.kpm_map[key] = []
-
-                        fields = []
-
-                        for column_name in reader.fieldnames:
-                            if row[column_name] == '':
-                                continue
-                            self.kpm_map[key].append(float(row[column_name]))
-                            fields.append(column_name)
-
-                        self.consumed_keys.add(key)
-                        self.send_to_telegraf_cp(ue=ue, values=self.kpm_map[key], fields=fields)
-
-                    if re.search('du-cell-[2-5].txt', file.name):
-                        if key not in self.kpm_map:
-                            self.kpm_map[key] = []
-
-                        fields = []
-
-                        for column_name in reader.fieldnames:
-                            if row[column_name] == '':
-                                continue
-                            self.kpm_map[key].append(float(row[column_name]))
-                            fields.append(column_name)
-
-                        self.consumed_keys.add(key)
-                        self.send_to_telegraf_du(ue=ue, values=self.kpm_map[key], fields=fields)
+                        self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
 
         lock.release()
 
     def on_closed(self, event):
         super().on_closed(event)
 
-    def send_to_telegraf_up(self, ue, values, fields):
+    def send_to_telegraf(self, ue, values, fields, file_type):
         
         # send data to telegraf
         pipe = self.statsd_client.pipeline()
@@ -116,39 +86,13 @@ class SimWatcher(PatternMatchingEventHandler):
 
         i = 0
         for field in fields:
-            stat = field + '_' + ue + '_up'
-            stat = stat.replace(' ','')
-            pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
-            i+=1
-        pipe.send()
-
-    def send_to_telegraf_cp(self, ue, values, fields):
-        
-        # send data to telegraf
-        pipe = self.statsd_client.pipeline()
-
-        # convert timestamp in nanoseconds (InfluxDB)
-        timestamp = int(values[0]*(pow(10,6))) # int because of starlark
-
-        i = 0
-        for field in fields:
-            stat = field + '_' + ue + '_cp'
-            stat = stat.replace(' ','')
-            pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
-            i+=1
-        pipe.send()
-
-    def send_to_telegraf_du(self, ue, values, fields):
-        
-        # send data to telegraf
-        pipe = self.statsd_client.pipeline()
-
-        # convert timestamp in nanoseconds (InfluxDB)
-        timestamp = int(values[0]*(pow(10,6))) # int because of starlark
-
-        i = 0
-        for field in fields:
-            stat = field + '_' + ue + '_du'
+            stat = field + '_' + ue
+            if file_type == 0:
+                stat += '_up'
+            if file_type == 1:
+                stat += '_cp'
+            if file_type == 2:
+                stat += '_du'
             stat = stat.replace(' ','')
             pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
             i+=1
