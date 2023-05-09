@@ -82,7 +82,9 @@ class SimWatcher(PatternMatchingEventHandler):
 
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
-        values[7] = values[7]*(pow(10, -1))
+        
+        if file_type==0:
+            values[7] = values[7]*(pow(10, -1))
 
         i = 0
         for field in fields:
