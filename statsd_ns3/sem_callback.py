@@ -47,9 +47,9 @@ class SimWatcher(PatternMatchingEventHandler):
                 
                 if re.search('cu-up-cell-[1-5].txt', file.name):
                     key = (timestamp, ue_imsi, 0)
-                if re.search('cu-cp-cell-[2-5].txt', file.name):
+                if re.search('cu-cp-cell-[1-5].txt', file.name):
                     key = (timestamp, ue_imsi, 1)
-                if re.search('du-cell-[2-5].txt', file.name):
+                if re.search('du-cell-[1-5].txt', file.name):
                     key = (timestamp, ue_imsi, 2)
 
 
