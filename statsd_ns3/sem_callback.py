@@ -16,7 +16,7 @@ class SimWatcher(PatternMatchingEventHandler):
     Watchdog event handler for each simulation
 
     """
-    patterns = ['cu-up-cell-1.txt', 'cu-cp-cell-*.txt', "du-cell-*.txt"]
+    patterns = ['cu-up-cell-*.txt', 'cu-cp-cell-*.txt', "du-cell-*.txt"]
     kpm_map: Dict[Tuple[int, int, int], List] = {}
     consumed_keys: Set[Tuple[int, int]]
     telegraf_host = "localhost"
@@ -25,7 +25,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
     def __init__(self):
         PatternMatchingEventHandler.__init__(self, patterns=self.patterns,
-                                             ignore_patterns=['cu-cp-cell-1.txt'],
+                                             ignore_patterns=[],
                                              ignore_directories=True, case_sensitive=False)
         self.directory = ''
         self.consumed_keys = set()
