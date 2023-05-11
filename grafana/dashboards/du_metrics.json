@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
   "links": [],
   "panels": [
     {
@@ -2941,13 +2940,6 @@
       "title": "L1M_RS-SINR_Bin127_UEID",
       "type": "timeseries"
     },
-    
-    
-    
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3027,11 +3019,6 @@
       "title": "TB_TotNbrDlInitial",
       "type": "timeseries"
     },
-    
-      
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3111,12 +3098,6 @@
       "title": "TB_TotNbrDlInitial_16Qam",
       "type": "timeseries"
     },
-    
-    
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3196,13 +3177,6 @@
       "title": "TB_TotNbrDlInitial_16Qam_UEID",
       "type": "timeseries"
     },
-    
-    
-    
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3282,10 +3256,6 @@
       "title": "TB_TotNbrDlInitial_64Qam",
       "type": "timeseries"
     },
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3365,8 +3335,6 @@
       "title": "TB_TotNbrDlInitial_64Qam_UEID",
       "type": "timeseries"
     },
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3446,9 +3414,6 @@
       "title": "TB_TotNbrDlInitial_Qpsk",
       "type": "timeseries"
     },
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3528,10 +3493,6 @@
       "title": "TB_TotNbrDlInitial_Qpsk_UEID",
       "type": "timeseries"
     },
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3611,8 +3572,6 @@
       "title": "TB_TotNbrDlInitial_UEID",
       "type": "timeseries"
     },
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3692,10 +3651,6 @@
       "title": "TB_TotNbrDl_1",
       "type": "timeseries"
     },
-    
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3775,8 +3730,6 @@
       "title": "TB_TotNbrDl_1_UEID",
       "type": "timeseries"
     },
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3835,7 +3788,7 @@
         "x": 12,
         "y": 184
       },
-      "id": 54,
+      "id": 56,
       "options": {
         "legend": {
           "calcs": [],
@@ -3848,17 +3801,14 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /dlAvailablePrbs_[0-9]{5}_du/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /nrCellId_[0-9]{5}_du/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "dlAvailablePrbs",
+      "title": "nrCellId",
       "type": "timeseries"
     },
-    
-    
-    
     {
       "datasource": null,
       "fieldConfig": {
@@ -3937,336 +3887,6 @@
       ],
       "title": "dlPrbUsage",
       "type": "timeseries"
-    },
-    
-    
-    
-    
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 192
-      },
-      "id": 56,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /nrCellId_[0-9]{5}_du/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "nrCellId",
-      "type": "timeseries"
-    },
-    
-    
-    
-    
-    
-    
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 200
-      },
-      "id": 57,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /plmId_[0-9]{5}_du/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "plmId",
-      "type": "timeseries"
-    },
-    
-    
-    
-    
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 200
-      },
-      "id": 58,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /qci_[0-9]{5}_du/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "qci",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 208
-      },
-      "id": 59,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /ulPrbUsage_[0-9]{5}_du/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "ulPrbUsage",
-      "type": "timeseries"
     }
   ],
   "refresh": false,
@@ -4277,12 +3897,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2023-05-11T13:41:20.220Z",
+    "to": "2023-05-11T13:41:21.301Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Du_Metrics",
   "uid": "r813vkU4z",
-  "version": 4
+  "version": 5
 }

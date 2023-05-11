@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
   "links": [],
   "panels": [
     {
@@ -787,7 +786,7 @@
         "x": 12,
         "y": 32
       },
-      "id": 4,
+      "id": 14,
       "options": {
         "legend": {
           "calcs": [],
@@ -800,12 +799,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /DRB_RelActNbr_5QI_UEID\\(0\\)_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighSINR2_[0-9]{5}_cp/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "DRB_RelActNbr_5QI_UEID",
+      "title": "L3neighSINR2",
       "type": "timeseries"
     },
     {
@@ -945,7 +944,7 @@
         "x": 12,
         "y": 40
       },
-      "id": 14,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [],
@@ -958,12 +957,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR2_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighId1\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR2",
+      "title": "L3neighId1 (cellId)",
       "type": "timeseries"
     },
     {
@@ -1100,85 +1099,6 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 48
-      },
-      "id": 6,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3neighId1\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3neighId1 (cellId)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
         "x": 0,
         "y": 56
       },
@@ -1212,12 +1132,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2023-05-11T13:41:20.193Z",
+    "to": "2023-05-11T13:41:21.307Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Cp_Metrics",
   "uid": "e3Pd1g84k",
-  "version": 9
+  "version": 1
 }
