@@ -55,7 +55,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
                 if key not in self.consumed_keys:
 
-                    if re.search('cu-up-cell-[1-5].txt', file.name) or re.search('du-cell-[2-5].txt', file.name) or re.search('cu-cp-cell-[2-5].txt', file.name):
+                    if re.search('cu-up-cell-[1-5].txt', file.name) or re.search('du-cell-[2-5].txt', file.name) or re.search('cu-cp-cell-[1-5].txt', file.name):
                         if key not in self.kpm_map:
                             self.kpm_map[key] = []
 
@@ -67,6 +67,10 @@ class SimWatcher(PatternMatchingEventHandler):
                             self.kpm_map[key].append(float(row[column_name]))
                             fields.append(column_name)
 
+                        if re.search('cu-up-cell-[1-5].txt', file.name):
+                            regex = re.search(r"cu-up-cell-(\d+)\.txt", file.name)
+                            fields.append('file_id_number')
+                            self.kpm_map[key].append(regex.group(1))
                         self.consumed_keys.add(key)
                         self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
 
@@ -88,6 +92,24 @@ class SimWatcher(PatternMatchingEventHandler):
 
         i = 0
         for field in fields:
+
+            if field == 'file_id_number':
+                continue
+
+            if field == 'DRB.PdcpSduDelayDl (cellAverageLatency)':
+                stat = 'DRB.PdcpSduDelayDl (cellAverageLatency)_cell_' + values[-1]
+                stat = stat.replace(' ','')
+                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+
+            if field == 'm_pDCPBytesDL (cellDlTxVolume)':
+                stat = 'm_pDCPBytesDL (cellDlTxVolume)_cell_' + values[-1]
+                stat = stat.replace(' ','')
+                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+
             stat = field + '_' + ue
             if file_type == 0:
                 stat += '_up'
