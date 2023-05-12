@@ -52,9 +52,9 @@ class SimWatcher(PatternMatchingEventHandler):
                 if re.search('du-cell-[1-5].txt', file.name):
                     key = (timestamp, ue_imsi, 2)
                 if  file.name == './cu-up-cell-1.txt':
-                    key = (timestamp, ue_imsi, 3)
+                    key = (timestamp, ue_imsi, 3)   # to see data for eNB cell
                 if file.name == './cu-cp-cell-1.txt':
-                    key = (timestamp, ue_imsi, 4)
+                    key = (timestamp, ue_imsi, 4)   # same here
 
 
                 if key not in self.consumed_keys:
@@ -90,6 +90,7 @@ class SimWatcher(PatternMatchingEventHandler):
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
         
+        # convert pdcp_latency, SHOULD BE DONE WITH ''''' if field == 'pdcp_lat...
         if file_type==3:
             values[7] = values[7]*(pow(10, -1))
 
