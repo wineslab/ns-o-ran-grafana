@@ -72,7 +72,7 @@ class SimWatcher(PatternMatchingEventHandler):
 
                     regex = re.search(r"\w*-(\d+)\.txt", file.name)
                     fields.append('file_id_number')
-                    self.kpm_map[key].append(regex.group(1))
+                    self.kpm_map[key].append(regex.group(1))      # last item of list will be file_id_number
 
                     self.consumed_keys.add(key)
                     self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
@@ -90,15 +90,15 @@ class SimWatcher(PatternMatchingEventHandler):
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
         
-        # convert pdcp_latency, SHOULD BE DONE WITH ''''' if field == 'pdcp_lat...
-        if file_type==3:
-            values[7] = values[7]*(pow(10, -1))
-
         i = 0
         for field in fields:
 
             if field == 'file_id_number':
                 continue
+
+            # convert pdcp_latency
+            if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
+                values[i] = values[i]*pow(10, -1)
 
             if field == 'DRB.PdcpSduDelayDl (cellAverageLatency)':
                 stat = 'DRB.PdcpSduDelayDl (cellAverageLatency)_cell_' + values[-1]
@@ -146,6 +146,3 @@ if __name__ == "__main__":
         observer.stop()
     
     observer.join()
-
-
-
