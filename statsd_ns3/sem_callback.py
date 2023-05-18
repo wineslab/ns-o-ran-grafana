@@ -12,10 +12,46 @@ lock = threading.Lock()
 
 
 class SimWatcher(PatternMatchingEventHandler):
+    
     """
-    Watchdog event handler for each simulation
+    A Python event handler that looks for specific .txt files, parses data from them, and sends it to Telegraf as part of a watchdog object.
 
+    Attributes
+    ----------
+    patterns : list
+        A list of file patterns that the event handler will monitor.
+        
+    kpm_map : dict
+        A dictionary that contains the data for a single measurement.
+        
+    consumed_keys : list
+        A list of keys already used in the dictionary.
+        
+    telegraf_host : str
+        The host address of the Telegraf server.
+        
+    telegraf_port : int
+        The port number of the Telegraf server.
+        
+    statsd_client : StatsD client
+        The StatsD client for sending metrics to Telegraf.
+
+        
+    Methods
+    -------
+    __init__(self)
+        Initializes the event handler with the patterns attribute, sets the directory to an empty string, and initializes the consumed keys attribute.
+        
+    on_created(self, event)
+        Handles the on_created event triggered when a new file is created.
+        
+    on_closed(self, event)
+        Handles the on_closed event triggered when a file is closed.
+        
+    on_modified(self, event)
+        Handles the on_modified event triggered when a file is modified.
     """
+ 
     patterns = ['cu-up-cell-*.txt', 'cu-cp-cell-*.txt', "du-cell-*.txt"]
     kpm_map: Dict[Tuple[int, int, int], List] = {}
     consumed_keys: Set[Tuple[int, int]]
