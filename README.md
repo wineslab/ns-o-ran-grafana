@@ -35,7 +35,7 @@ $ docker compose up
 ```bash
 $ docker compose exec ns3 /bin/bash
 $ cd ns3-mmwave-oran
-$ python3 sem_callback.py
+$ python3 sim_watcher.py
 ```
 
 ## Run the ns3 simulation
