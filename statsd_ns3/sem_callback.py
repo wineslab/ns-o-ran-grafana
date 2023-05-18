@@ -45,30 +45,37 @@ class SimWatcher(PatternMatchingEventHandler):
                 ue_imsi = int(row['ueImsiComplete'])
                 ue = row['ueImsiComplete']
                 
-                if re.search('cu-up-cell-[1-5].txt', file.name):
+                if re.search('cu-up-cell-[2-5].txt', file.name):
                     key = (timestamp, ue_imsi, 0)
-                if re.search('cu-cp-cell-[1-5].txt', file.name):
+                if re.search('cu-cp-cell-[2-5].txt', file.name):
                     key = (timestamp, ue_imsi, 1)
                 if re.search('du-cell-[1-5].txt', file.name):
                     key = (timestamp, ue_imsi, 2)
+                if  file.name == './cu-up-cell-1.txt':
+                    key = (timestamp, ue_imsi, 3)   # to see data for eNB cell
+                if file.name == './cu-cp-cell-1.txt':
+                    key = (timestamp, ue_imsi, 4)   # same here
 
 
                 if key not in self.consumed_keys:
 
-                    if re.search('cu-up-cell-[1-5].txt', file.name) or re.search('du-cell-[2-5].txt', file.name) or re.search('cu-cp-cell-[2-5].txt', file.name):
-                        if key not in self.kpm_map:
-                            self.kpm_map[key] = []
+                    if key not in self.kpm_map:
+                        self.kpm_map[key] = []
 
-                        fields = []
+                    fields = []
 
-                        for column_name in reader.fieldnames:
-                            if row[column_name] == '':
-                                continue
-                            self.kpm_map[key].append(float(row[column_name]))
-                            fields.append(column_name)
+                    for column_name in reader.fieldnames:
+                        if row[column_name] == '':
+                            continue
+                        self.kpm_map[key].append(float(row[column_name]))
+                        fields.append(column_name)
 
-                        self.consumed_keys.add(key)
-                        self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
+                    regex = re.search(r"\w*-(\d+)\.txt", file.name)
+                    fields.append('file_id_number')
+                    self.kpm_map[key].append(regex.group(1))      # last item of list will be file_id_number
+
+                    self.consumed_keys.add(key)
+                    self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
 
         lock.release()
 
@@ -83,15 +90,40 @@ class SimWatcher(PatternMatchingEventHandler):
         # convert timestamp in nanoseconds (InfluxDB)
         timestamp = int(values[0]*(pow(10,6))) # int because of starlark
         
-        if file_type==0:
-            values[7] = values[7]*(pow(10, -1))
-
         i = 0
         for field in fields:
+
+            if field == 'file_id_number':
+                continue
+
+            # convert pdcp_latency
+            if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
+                values[i] = values[i]*pow(10, -1)
+
+            if field == 'DRB.PdcpSduDelayDl (cellAverageLatency)':
+                stat = 'DRB.PdcpSduDelayDl (cellAverageLatency)_cell_' + values[-1]
+                stat = stat.replace(' ','')
+                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+
+            if field == 'm_pDCPBytesDL (cellDlTxVolume)':
+                stat = 'm_pDCPBytesDL (cellDlTxVolume)_cell_' + values[-1]
+                stat = stat.replace(' ','')
+                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+
+            if field == 'numActiveUes':
+                stat = 'numActiveUes_cell_' + values[-1]
+                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+
             stat = field + '_' + ue
-            if file_type == 0:
+            if file_type == 0 or file_type == 3:
                 stat += '_up'
-            if file_type == 1:
+            if file_type == 1 or file_type == 4:
                 stat += '_cp'
             if file_type == 2:
                 stat += '_du'
@@ -114,6 +146,3 @@ if __name__ == "__main__":
         observer.stop()
     
     observer.join()
-
-
-

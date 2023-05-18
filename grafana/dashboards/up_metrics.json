@@ -75,7 +75,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 14,
+      "id": 18,
       "options": {
         "legend": {
           "calcs": [],
@@ -88,12 +88,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /m_pDCPBytesDL\\(cellDlTxVolume\\)_[0-9]{5}_up/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /QosFlow_PdcpPduVolumeDL_Filter_UEID\\(txPdcpPduBytesNrRlc\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "m_pDCPBytesDL (cellDlTxVolume)",
+      "title": "QosFlow_PdcpPduVolumeDL_Filter_UEID (txPdcpPduBytesNrRlc)",
       "type": "timeseries"
     },
     {
@@ -274,7 +274,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 10,
+      "id": 16,
       "options": {
         "legend": {
           "calcs": [],
@@ -287,12 +287,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /Tot_PdcpSduNbrDl_UEID\\(txDlPackets\\)_[0-9]{5}_up/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB_PdcpPduNbrDl_Qos_UEID\\(txPdcpPduNrRlc\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
+      "title": "DRB_PdcpPduNbrDl_Qos_UEID (txPdcpPduNrRlc)",
       "type": "timeseries"
     },
     {
@@ -366,7 +366,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_[0-9]{5}_up/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_cell_[0-9]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -394,9 +394,6 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -435,7 +432,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 4,
+      "id": 10,
       "options": {
         "legend": {
           "calcs": [],
@@ -448,12 +445,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_[0-9]{5}_up/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /Tot_PdcpSduNbrDl_UEID\\(txDlPackets\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
-          "refId": "tx_bytes"
+          "refId": "A"
         }
       ],
-      "title": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
+      "title": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
       "type": "timeseries"
     },
     {
@@ -534,9 +531,170 @@
       ],
       "title": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
       "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "query": "SELECT \"value\" FROM /m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_[0-9]/ WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A"
+        }
+      ],
+      "title": "m_pDCPBytesDL (cellDlTxVolume)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_[0-9]{5}_up/ WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "tx_bytes"
+        }
+      ],
+      "title": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
+      "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -544,8 +702,8 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-05-15T08:52:38.627Z",
+    "to": "2023-05-15T08:52:40.351Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -555,5 +713,5 @@
   "timezone": "",
   "title": "Up_Metrics",
   "uid": "SDOyaFLVz",
-  "version": 2
+  "version": 5
 }

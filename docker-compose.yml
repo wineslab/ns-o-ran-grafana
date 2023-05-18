@@ -16,6 +16,7 @@ services:
     env_file: configuration.env
     ports:
       - '127.0.0.1:8086:8086'
+    command: sh -c "influxd & sleep 10 && influx -database influx -execute 'delete from /\w*/'; tail -f /dev/null"
     volumes:
       - ./:/imports
       - influxdb_data:/var/lib/influxdb
