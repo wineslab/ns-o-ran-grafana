@@ -14,33 +14,33 @@ lock = threading.Lock()
 class SimWatcher(PatternMatchingEventHandler):
     
     """
-    A Python event handler that looks for specific .txt files, parses data from them, and sends it to Telegraf as part of a watchdog object.
+    A Python event handler that looks for specific .txt formatted as csv files, parses data from them, and sends it to Telegraf as part of a watchdog object.
 
     Attributes
     ----------
     patterns : list
         A list of file patterns that the event handler will monitor.
         
-    kpm_map : dict
-        A dictionary that contains the data for a single measurement.
+    kpm_map : Dict[Tuple[int, int, int], List]
+        A dictionary that contains the data for every measurement in the csv file.
         
-    consumed_keys : list
+    consumed_keys : Set[Tuple[int, int, int]]
         A list of keys already used in the dictionary.
         
     telegraf_host : str
-        The host address of the Telegraf server.
+        The host address of the Telegraf server "localhost" by default.
         
     telegraf_port : int
-        The port number of the Telegraf server.
+        The port number of the Telegraf server, 8125 by default.
         
-    statsd_client : StatsD client
-        The StatsD client for sending metrics to Telegraf.
+    statsd_client : StatsClient
+        The StatsD client for sending metrics to Telegraf automatically created by default with the above parameters.
 
         
     Methods
     -------
     __init__(self)
-        Initializes the event handler with the patterns attribute, sets the directory to an empty string, and initializes the consumed keys attribute.
+        Initializes the event handler
         
     on_created(self, event)
         Handles the on_created event triggered when a new file is created.
@@ -50,16 +50,24 @@ class SimWatcher(PatternMatchingEventHandler):
         
     on_modified(self, event)
         Handles the on_modified event triggered when a file is modified.
+
+    send_to_telegraf(self, ue, values, fields, file_type)
+        Formats and sends data to the Telegraf agent
     """
  
     patterns = ['cu-up-cell-*.txt', 'cu-cp-cell-*.txt', "du-cell-*.txt"]
     kpm_map: Dict[Tuple[int, int, int], List] = {}
-    consumed_keys: Set[Tuple[int, int]]
+    consumed_keys: Set[Tuple[int, int, int]]
     telegraf_host = "localhost"
     telegraf_port = 8125
     statsd_client = StatsClient(telegraf_host, telegraf_port, prefix = None)
 
     def __init__(self):
+
+        """
+        Initializes the class
+        """
+
         PatternMatchingEventHandler.__init__(self, patterns=self.patterns,
                                              ignore_patterns=[],
                                              ignore_directories=True, case_sensitive=False)
@@ -67,9 +75,19 @@ class SimWatcher(PatternMatchingEventHandler):
         self.consumed_keys = set()
 
     def on_created(self, event):
+
+        """
+        Handles the on_created event triggered when a new file is created.
+        """
+
         super().on_created(event)
 
     def on_modified(self, event):
+
+        """
+        Handles the on_modified event triggered when a file is modified.
+        """
+
         super().on_modified(event)
 
         lock.acquire()
@@ -98,7 +116,7 @@ class SimWatcher(PatternMatchingEventHandler):
                     if key not in self.kpm_map:
                         self.kpm_map[key] = []
 
-                    fields = []
+                    fields = list()
 
                     for column_name in reader.fieldnames:
                         if row[column_name] == '':
@@ -111,14 +129,38 @@ class SimWatcher(PatternMatchingEventHandler):
                     self.kpm_map[key].append(regex.group(1))      # last item of list will be file_id_number
 
                     self.consumed_keys.add(key)
-                    self.send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
+                    self._send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
 
         lock.release()
 
     def on_closed(self, event):
+
+        """
+        Handles the on_closed event triggered when a file is closed.
+        """
+
         super().on_closed(event)
 
-    def send_to_telegraf(self, ue, values, fields, file_type):
+    def _send_to_telegraf(self, ue:int, values:List, fields:List, file_type:int):
+
+        """
+        Formats and sends data to the Telegraf agent.
+
+        Parameters
+        ----------
+        ue : int
+            Value extracted from csv, represents the ue.
+        values : List
+            List of metrics to send to Telegraf.
+        fields : List
+            List of field names corresponding to the metrics in the values parameter.
+        file_type: int
+            Ranges from 1 to 3. Represents if the metrics come from a up, cu or du file respectively.
+
+        Notes
+        -----
+        The "stat" parameter of the gauge() function will then be shown as the table name in InfluxDB, this explains the stat string formatting for each metric.
+        """
         
         # send data to telegraf
         pipe = self.statsd_client.pipeline()

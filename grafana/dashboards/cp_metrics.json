@@ -75,7 +75,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 30,
+      "id": 28,
       "options": {
         "legend": {
           "calcs": [],
@@ -88,12 +88,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /numActiveUes_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3servingSINR_[0-9]{5}_cp/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "numActiveUes",
+      "title": "L3servingSINR",
       "type": "timeseries"
     },
     {
@@ -233,7 +233,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 28,
+      "id": 26,
       "options": {
         "legend": {
           "calcs": [],
@@ -246,12 +246,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3servingSINR_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3servingSINR3gpp_[0-9]{5}_cp/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3servingSINR",
+      "title": "L3servingSINR3gpp",
       "type": "timeseries"
     },
     {
@@ -391,7 +391,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 26,
+      "id": 24,
       "options": {
         "legend": {
           "calcs": [],
@@ -404,12 +404,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3servingSINR3gpp_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3servingId\\(m_cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3servingSINR3gpp",
+      "title": "L3servingId (m_cellId)",
       "type": "timeseries"
     },
     {
@@ -549,7 +549,7 @@
         "x": 0,
         "y": 24
       },
-      "id": 24,
+      "id": 22,
       "options": {
         "legend": {
           "calcs": [],
@@ -562,12 +562,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3servingId\\(m_cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3neighSINR3gpp1\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3servingId (m_cellId)",
+      "title": "L3neighSINR3gpp1 (convertedSinr)",
       "type": "timeseries"
     },
     {
@@ -707,7 +707,7 @@
         "x": 0,
         "y": 32
       },
-      "id": 22,
+      "id": 18,
       "options": {
         "legend": {
           "calcs": [],
@@ -720,12 +720,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR3gpp1\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3neighSINR3gpp3\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR3gpp1 (convertedSinr)",
+      "title": "L3neighSINR3gpp3 (convertedSinr)",
       "type": "timeseries"
     },
     {
@@ -865,7 +865,7 @@
         "x": 0,
         "y": 40
       },
-      "id": 18,
+      "id": 10,
       "options": {
         "legend": {
           "calcs": [],
@@ -878,12 +878,12 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR3gpp3\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3neighId3\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR3gpp3 (convertedSinr)",
+      "title": "L3neighId3 (cellId)",
       "type": "timeseries"
     },
     {
@@ -1023,85 +1023,6 @@
         "x": 0,
         "y": 48
       },
-      "id": 10,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3neighId3\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3neighId3 (cellId)",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 56
-      },
       "id": 2,
       "options": {
         "legend": {
@@ -1124,7 +1045,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -1132,12 +1053,12 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-11T13:41:20.193Z",
-    "to": "2023-05-11T13:41:21.307Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Cp_Metrics",
   "uid": "e3Pd1g84k",
-  "version": 1
+  "version": 2
 }
