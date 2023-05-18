@@ -52,8 +52,8 @@ You may want to set the following options in the last command:
 ## Usage
 Once everything is running correctly make sure the absolute time range on Grafana is set to "Last 5 minutes" so that data will appear as soon as it is sent.
 When data is visible you may want to change the absolute time range to:  
-From: timestamp of the first visible measurement  
-To: From timestamp + simulation time
+**From**: timestamp of the first visible measurement  
+**To**: From timestamp + simulation time
 
 ## License
 
