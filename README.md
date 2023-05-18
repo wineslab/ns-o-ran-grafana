@@ -26,7 +26,7 @@ This example showcases graphical data visualization using Grafana. Data is extra
 $ docker compose up
 ```
 
-### Open Grafana and select "Demo" dashboard
+### Open Grafana and select a dashboard
 - URL: http://localhost:3000 
 - User: admin 
 - Password: admin 
@@ -49,6 +49,11 @@ You may want to set the following options in the last command:
 1. `--RngRun=n`, where n is a positive integer representing the seed for the pseudo-random number generator.
 2. `--simTime=x`, where x is the simulation time (in seconds)
 
+## Usage
+Once everything is running correctly make sure the absolute time range on Grafana is set to "Last 5 minutes" so that data will appear as soon as it is sent.
+When data is visible you may want to change the absolute time range to:
+From: timestamp of the first visible measurement
+To: From timestamp + simulation time
 
 ## License
 
