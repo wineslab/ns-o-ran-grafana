@@ -1,6 +1,6 @@
 # Graphical Visualization of simulated ns3 data with Grafana
 
-This example showcases graphical data visualization using Grafana. Data is extracted from a 5G ns3 simulation into csv files and sent to an InfluxDB server via Telegraf. Grafana then gathers data and plots it on a dashboard, allowing for easier analysis and interpretation. We created three dashboards to showcase all the data generated from "cu-up", "cu-cp" and "du" files within the simulation container. As a next step, we plan to create a fourth dashboard to display aggregate data of interest. 
+This example showcases graphical data visualization using Grafana. Data is extracted from a 5G ns3 simulation into csv files and sent to an InfluxDB server via Telegraf. Grafana then gathers data and plots it on a dashboard, allowing for easier analysis and interpretation. We created four dashboards to showcase all the data generated from "cu-up", "cu-cp" and "du" files within the simulation container. The forth dashboard plots aggregated data of interest.  
 
 ## Services and Ports
 
@@ -51,8 +51,8 @@ You may want to set the following options in the last command:
 
 ## Usage
 Once everything is running correctly make sure the absolute time range on Grafana is set to "Last 5 minutes" so that data will appear as soon as it is sent.
-When data is visible you may want to change the absolute time range to:
-From: timestamp of the first visible measurement
+When data is visible you may want to change the absolute time range to:  
+From: timestamp of the first visible measurement  
 To: From timestamp + simulation time
 
 ## License
