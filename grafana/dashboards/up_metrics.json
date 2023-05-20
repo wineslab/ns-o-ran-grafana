@@ -25,7 +25,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "PDCP PDU Volume",
+            "axisLabel": "QosFlow_PdcpPduVolumeDL_Filter_UEID (txPdcpPduBytesNrRlc)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -94,7 +94,7 @@
           "refId": "A"
         }
       ],
-      "title": "QosFlow_PdcpPduVolumeDL_Filter_UEID (txPdcpPduBytesNrRlc)",
+      "title": "PDCP PDU Volume",
       "type": "timeseries"
     },
     {
@@ -105,7 +105,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "CELL PDCP Latency",
+            "axisLabel": "DRB.PdcpSduDelayDl.UEID (pdcpLatency)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -214,7 +214,7 @@
           ]
         }
       ],
-      "title": "DRB.PdcpSduDelayDl.UEID (pdcpLatency)",
+      "title": "CELL PDCP Latency",
       "type": "timeseries"
     },
     {
@@ -225,7 +225,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "QoS PDCP PDU",
+            "axisLabel": "DRB_PdcpPduNbrDl_Qos_UEID (txPdcpPduNrRlc)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -294,7 +294,7 @@
           "refId": "A"
         }
       ],
-      "title": "DRB_PdcpPduNbrDl_Qos_UEID (txPdcpPduNrRlc)",
+      "title": "QoS PDCP PDU",
       "type": "timeseries"
     },
     {
@@ -305,7 +305,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "CELL Average Latency",
+            "axisLabel": "DRB.PdcpSduDelayDl (cellAverageLatency)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -374,7 +374,7 @@
           "refId": "A"
         }
       ],
-      "title": "DRB.PdcpSduDelayDl (cellAverageLatency)",
+      "title": "CELL Average Latency",
       "type": "timeseries"
     },
     {
@@ -385,7 +385,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "PDCP PDU",
+            "axisLabel": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -454,7 +454,7 @@
           "refId": "A"
         }
       ],
-      "title": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
+      "title": "PDCP PDU",
       "type": "timeseries"
     },
     {
@@ -465,7 +465,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "PDCP Throughput",
+            "axisLabel": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -534,7 +534,7 @@
           "refId": "A"
         }
       ],
-      "title": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
+      "title": "PDCP Throughput",
       "type": "timeseries"
     },
     {
@@ -545,7 +545,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "PDCP Volume",
+            "axisLabel": "m_pDCPBytesDL (cellDlTxVolume)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -614,7 +614,7 @@
           "refId": "A"
         }
       ],
-      "title": "m_pDCPBytesDL (cellDlTxVolume)",
+      "title": "PDCP Volume",
       "type": "timeseries"
     },
     {
@@ -625,7 +625,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "Tx Bytes",
+            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -697,7 +697,7 @@
           "refId": "tx_bytes"
         }
       ],
-      "title": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
+      "title": "Tx Bytes",
       "type": "timeseries"
     }
   ],
