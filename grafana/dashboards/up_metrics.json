@@ -25,7 +25,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "",
+            "axisLabel": "PDCP PDU Volume",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -225,7 +225,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB_PdcpPduNbrDl_Qos_UEID (txPdcpPduNrRlc)",
+            "axisLabel": "QoS PDCP PDU",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -305,7 +305,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduDelayDl (cellAverageLatency)",
+            "axisLabel": "CELL Average Latency",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -385,7 +385,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
+            "axisLabel": "PDCP PDU",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -465,7 +465,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
+            "axisLabel": "PDCP Throughput",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -545,7 +545,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "m_pDCPBytesDL (cellDlTxVolume)",
+            "axisLabel": "PDCP Volume",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -625,7 +625,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
+            "axisLabel": "Tx Bytes",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
