@@ -37,7 +37,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "user"
         },
         "overrides": []
       },
@@ -69,7 +70,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Number of UeS per Cell",
       "type": "bargauge"
     },
     {
@@ -107,7 +108,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Number of UeS per Cell (Heatmap)",
       "tooltip": {
         "show": true,
         "showHistogram": false
@@ -132,7 +133,7 @@
       "yBucketSize": null
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -140,12 +141,12 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-05-20T08:41:25.000Z",
+    "to": "2023-05-20T08:41:27.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Aggregated_metrics",
   "uid": "D4fmbHU4z",
-  "version": 2
+  "version": 1
 }
