@@ -71,6 +71,15 @@
         }
       ],
       "title": "Number of UeS per Cell",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "numActiveUes_cell_([1-5])",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "bargauge"
     },
     {
@@ -133,7 +142,7 @@
       "yBucketSize": null
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -141,12 +150,12 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-20T08:41:25.000Z",
-    "to": "2023-05-20T08:41:27.000Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Aggregated_metrics",
   "uid": "D4fmbHU4z",
-  "version": 1
+  "version": 4
 }
