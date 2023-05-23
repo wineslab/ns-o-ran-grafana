@@ -95,6 +95,15 @@
         }
       ],
       "title": "TB_ErrTotalNbrDl_1_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_ErrTotalNbrDl_1_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -175,6 +184,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin127",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin127_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -255,6 +273,15 @@
         }
       ],
       "title": "TB_ErrTotalNbrDl_1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_ErrTotalNbrDl_1_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -335,6 +362,15 @@
         }
       ],
       "title": "DRB_MeanActiveUeDl",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_MeanActiveUeDl_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -415,6 +451,15 @@
         }
       ],
       "title": "RRU_PrbUsedDl_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "RRU_PrbUsedDl_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -495,6 +540,15 @@
         }
       ],
       "title": "DRB_BufferSize_Qos",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_BufferSize_Qos_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -575,6 +629,15 @@
         }
       ],
       "title": "RRU_PrbUsedDl",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "RRU_PrbUsedDl_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -655,6 +718,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin6",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin6_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -735,6 +807,15 @@
         }
       ],
       "title": "QosFlow_PdcpPduVolumeDL_Filter_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "QosFlow_PdcpPduVolumeDL_Filter_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -815,6 +896,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin5",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin5_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -895,6 +985,15 @@
         }
       ],
       "title": "QosFlow_PdcpPduVolumeDL_Filter",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "QosFlow_PdcpPduVolumeDL_Filter_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -975,6 +1074,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin4",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin4_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1055,6 +1163,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin94",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin94_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1135,6 +1252,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin3",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin3_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1215,6 +1341,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin94_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin94_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1295,6 +1430,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin2",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin2_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1375,6 +1519,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin82_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin82_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1455,6 +1608,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin1_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1535,6 +1697,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin82",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin82_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1609,12 +1780,21 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /CARR_PDSCHMCSDist_Bin1_UEID_[0-9]{5}_du/\n WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /CARR_PDSCHMCSDist_Bin1_UEID_[0-9]{5}_du/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin1_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin1_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1695,6 +1875,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin70",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin70_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1775,6 +1964,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin2_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin2_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1855,6 +2053,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin70_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin70_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -1935,6 +2142,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin3_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin3_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2015,6 +2231,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin58_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin58_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2095,6 +2320,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin4_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin4_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2175,6 +2409,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin58",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin58_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2255,6 +2498,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin5_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin5_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2335,6 +2587,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin46_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin46_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2415,6 +2676,15 @@
         }
       ],
       "title": "CARR_PDSCHMCSDist_Bin6_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "CARR_PDSCHMCSDist_Bin6_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2495,6 +2765,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin46",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin46_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2575,6 +2854,15 @@
         }
       ],
       "title": "DRB_BufferSize_Qos_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_BufferSize_Qos_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2655,6 +2943,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin34_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin34_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2735,6 +3032,15 @@
         }
       ],
       "title": "DRB_UEThpDlPdcpBased_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_UEThpDlPdcpBased_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2815,6 +3121,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin34",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin34_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2895,6 +3210,15 @@
         }
       ],
       "title": "DRB_UEThpDl_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_UEThpDl_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -2975,6 +3299,15 @@
         }
       ],
       "title": "L1M_RS-SINR_Bin127_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L1M_RS-SINR_Bin127_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3055,6 +3388,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3135,6 +3477,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_16Qam",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_16Qam_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3215,6 +3566,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_16Qam_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_16Qam_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3295,6 +3655,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_64Qam",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_64Qam_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3375,6 +3744,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_64Qam_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_64Qam_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3455,6 +3833,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_Qpsk",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_Qpsk_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3535,6 +3922,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_Qpsk_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_Qpsk_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3615,6 +4011,15 @@
         }
       ],
       "title": "TB_TotNbrDlInitial_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDlInitial_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3695,6 +4100,15 @@
         }
       ],
       "title": "TB_TotNbrDl_1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDl_1_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3775,6 +4189,15 @@
         }
       ],
       "title": "TB_TotNbrDl_1_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "TB_TotNbrDl_1_UEID_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3855,6 +4278,15 @@
         }
       ],
       "title": "nrCellId",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "nrCellId_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -3929,12 +4361,22 @@
       },
       "targets": [
         {
+          "alias": "",
           "query": "SELECT \"value\" FROM /dlPrbUsage_[0-9]{5}_du/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
       "title": "dlPrbUsage",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "dlPrbUsage_([0-9]{5})_du",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
@@ -3946,12 +4388,12 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-11T13:41:20.220Z",
-    "to": "2023-05-11T13:41:21.301Z"
+    "from": "2023-05-23T15:15:21.000Z",
+    "to": "2023-05-23T15:15:23.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Du_Metrics",
   "uid": "r813vkU4z",
-  "version": 5
+  "version": 4
 }
