@@ -95,10 +95,20 @@
         }
       ],
       "title": "L3servingSINR",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3servingSINR_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "(convertedSinr)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -174,7 +184,16 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR3gpp2 (convertedSinr)",
+      "title": "L3neighSINR3gpp2",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR3gpp2\\(convertedSinr\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -255,6 +274,15 @@
         }
       ],
       "title": "L3servingSINR3gpp",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3servingSINR3gpp_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -335,10 +363,20 @@
         }
       ],
       "title": "L3neighSINR3",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR3_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "m_cellId",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -414,7 +452,16 @@
           "refId": "A"
         }
       ],
-      "title": "L3servingId (m_cellId)",
+      "title": "L3servingId m_cellId",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3servingId\\(m_cellId\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -495,10 +542,20 @@
         }
       ],
       "title": "L3neighSINR1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR1_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "convertedSinr",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -574,11 +631,21 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR3gpp1 (convertedSinr)",
+      "title": "L3neighSINR3gpp1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR3gpp1\\(convertedSinr\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "cellId",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -654,11 +721,21 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighId2 (cellId)",
+      "title": "L3neighId2 ",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighId2\\(cellId\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "convertedSinr",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -734,7 +811,16 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighSINR3gpp3 (convertedSinr)",
+      "title": "L3neighSINR3gpp3",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR3gpp3\\(convertedSinr\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -815,10 +901,20 @@
         }
       ],
       "title": "L3neighSINR2",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighSINR2_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "cellId",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -894,11 +990,21 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighId3 (cellId)",
+      "title": "L3neighId3",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighId3\\(cellId\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "cellId",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -974,11 +1080,21 @@
           "refId": "A"
         }
       ],
-      "title": "L3neighId1 (cellId)",
+      "title": "L3neighId1",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "L3neighId1\\(cellId\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "numDrb",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1054,11 +1170,20 @@
           "refId": "A"
         }
       ],
-      "title": "DRB_EstabSucc_5QI_UEID (numDrb)",
+      "title": "DRB_EstabSucc_5QI_UEID",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_EstabSucc_5QI_UEID\\(numDrb\\)_([0-9]{5})_cp",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -1066,12 +1191,12 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-05-23T15:15:21.000Z",
+    "to": "2023-05-23T15:15:23.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Cp_Metrics",
   "uid": "e3Pd1g84k",
-  "version": 2
+  "version": 4
 }
