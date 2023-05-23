@@ -19,13 +19,14 @@
   "panels": [
     {
       "datasource": null,
+      "description": "txPdcpPduBytesNrRlc",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "QosFlow_PdcpPduVolumeDL_Filter_UEID (txPdcpPduBytesNrRlc)",
+            "axisLabel": "QosFlow_PdcpPduVolumeDL_Filter_UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -95,17 +96,27 @@
         }
       ],
       "title": "PDCP PDU Volume",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "QosFlow_PdcpPduVolumeDL_Filter_UEID\\(txPdcpPduBytesNrRlc\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "pdcpLatency",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduDelayDl.UEID (pdcpLatency)",
+            "axisLabel": "DRB.PdcpSduDelayDl.UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -214,18 +225,28 @@
           ]
         }
       ],
-      "title": "CELL PDCP Latency",
+      "title": "Cell PDCP Latency",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB.PdcpSduDelayDl.UEID\\(pdcpLatency\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "txPdcpPduNrRlc",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB_PdcpPduNbrDl_Qos_UEID (txPdcpPduNrRlc)",
+            "axisLabel": "DRB_PdcpPduNbrDl_Qos_UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -295,17 +316,27 @@
         }
       ],
       "title": "QoS PDCP PDU",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB_PdcpPduNbrDl_Qos_UEID\\(txPdcpPduNrRlc\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "cellAverageLatency",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduDelayDl (cellAverageLatency)",
+            "axisLabel": "DRB.PdcpSduDelayDl",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -374,18 +405,28 @@
           "refId": "A"
         }
       ],
-      "title": "CELL Average Latency",
+      "title": "Cell Average Latency",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_cell_([0-9])",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "txDlPackets",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "Tot.PdcpSduNbrDl.UEID (txDlPackets)",
+            "axisLabel": "Tot.PdcpSduNbrDl.UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -455,17 +496,27 @@
         }
       ],
       "title": "PDCP PDU",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "Tot_PdcpSduNbrDl_UEID\\(txDlPackets\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "pdcpThroughput",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduBitRateDl.UEID (pdcpThroughput)",
+            "axisLabel": "DRB.PdcpSduBitRateDl.UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -535,17 +586,27 @@
         }
       ],
       "title": "PDCP Throughput",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB.PdcpSduBitRateDl.UEID\\(pdcpThroughput\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": " cellDlTxVolume",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "m_pDCPBytesDL (cellDlTxVolume)",
+            "axisLabel": "m_pDCPBytesDL",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -614,18 +675,28 @@
           "refId": "A"
         }
       ],
-      "title": "PDCP Volume",
+      "title": "Cell PDCP Volume",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_([0-9])",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
       "datasource": null,
+      "description": "txBytes",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID (txBytes)",
+            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -698,6 +769,15 @@
         }
       ],
       "title": "Tx Bytes",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_([0-9]{5})_up",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
@@ -709,8 +789,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-05-15T08:52:38.627Z",
-    "to": "2023-05-15T08:52:40.351Z"
+    "from": "2023-05-23T13:27:49.000Z",
+    "to": "2023-05-23T13:27:51.000Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -720,5 +800,5 @@
   "timezone": "",
   "title": "Up_Metrics",
   "uid": "SDOyaFLVz",
-  "version": 5
+  "version": 7
 }
