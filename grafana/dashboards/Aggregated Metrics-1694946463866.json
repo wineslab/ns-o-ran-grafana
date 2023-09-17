@@ -29,7 +29,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "#56A64B",
                 "value": null
               },
               {
@@ -38,12 +38,12 @@
               }
             ]
           },
-          "unit": "user"
+          "unit": "none"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 10,
         "w": 24,
         "x": 0,
         "y": 0
@@ -59,7 +59,7 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true,
+        "showUnfilled": false,
         "text": {}
       },
       "pluginVersion": "8.0.2",
@@ -70,7 +70,7 @@
           "refId": "A"
         }
       ],
-      "title": "Number of UeS per Cell",
+      "title": "Number of UEs per Cell",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -88,19 +88,21 @@
         "cardRound": null
       },
       "color": {
-        "cardColor": "#b4ff00",
+        "cardColor": "#56A64B",
         "colorScale": "sqrt",
-        "colorScheme": "interpolateInferno",
-        "exponent": 0.5,
-        "mode": "spectrum"
+        "colorScheme": "interpolateGreens",
+        "exponent": 0.9,
+        "max": 12,
+        "min": -0.1,
+        "mode": "opacity"
       },
       "dataFormat": "tsbuckets",
       "datasource": null,
       "gridPos": {
-        "h": 12,
+        "h": 14,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 10
       },
       "heatmap": {},
       "hideZeroBuckets": false,
@@ -112,16 +114,26 @@
       "reverseYBuckets": false,
       "targets": [
         {
+          "alias": "",
           "query": "SELECT \"value\" FROM /numActiveUes_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
       ],
-      "title": "Number of UeS per Cell (Heatmap)",
+      "title": "Number of UEs per Cell ",
       "tooltip": {
         "show": true,
         "showHistogram": false
       },
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "numActiveUes_cell_([0-5])",
+            "renamePattern": "$1"
+          }
+        }
+      ],
       "type": "heatmap",
       "xAxis": {
         "show": true
@@ -142,7 +154,7 @@
       "yBucketSize": null
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -150,12 +162,12 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2023-09-16T13:09:53.000Z",
+    "to": "2023-09-16T13:09:55.000Z"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Aggregated_metrics",
+  "title": "Aggregated Metrics",
   "uid": "D4fmbHU4z",
-  "version": 4
+  "version": 1
 }
