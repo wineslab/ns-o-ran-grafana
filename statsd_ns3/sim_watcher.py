@@ -119,12 +119,6 @@ class SimWatcher(PatternMatchingEventHandler):
                     fields = list()
 
                     for column_name in reader.fieldnames:
-
-                        if column_name == 'numActiveUes' and row[column_name] == '':
-                            x = 0
-                            self.kpm_map[key].append(x)
-                            fields.append(column_name)
-                            continue
                         if row[column_name] == '':
                             continue
                         self.kpm_map[key].append(float(row[column_name]))
