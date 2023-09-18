@@ -178,22 +178,9 @@ class SimWatcher(PatternMatchingEventHandler):
             if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
                 values[i] = values[i]*pow(10, -1)
 
-            if field == 'DRB.PdcpSduDelayDl (cellAverageLatency)':
-                stat = 'DRB.PdcpSduDelayDl (cellAverageLatency)_cell_' + values[-1]
+            if 'UEID' not in field:
+                stat = field + '_cell_' + values[-1]
                 stat = stat.replace(' ','')
-                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
-                i+=1
-                continue
-
-            if field == 'm_pDCPBytesDL (cellDlTxVolume)':
-                stat = 'm_pDCPBytesDL (cellDlTxVolume)_cell_' + values[-1]
-                stat = stat.replace(' ','')
-                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
-                i+=1
-                continue
-
-            if field == 'numActiveUes':
-                stat = 'numActiveUes_cell_' + values[-1]
                 pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
                 i+=1
                 continue
