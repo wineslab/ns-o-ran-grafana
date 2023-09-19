@@ -89,7 +89,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3servingSINR_[0-9]{5}_cp/ WHERE $timeFilter\n",
+          "query": "SELECT \"value\" FROM /L3servingSINR_cell_[0-5]/ WHERE $timeFilter\n",
           "rawQuery": true,
           "refId": "A"
         }
@@ -99,187 +99,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3servingSINR_([0-9]{5})_cp",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "(convertedSinr)",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": ""
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 20,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3neighSINR3gpp2\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3neighSINR3gpp2",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "L3neighSINR3gpp2\\(convertedSinr\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": ""
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 26,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3servingSINR3gpp_[0-9]{5}_cp/ WHERE $timeFilter\n",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3servingSINR3gpp",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "L3servingSINR3gpp_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3servingSINR_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -357,7 +178,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR3_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighSINR3_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -367,98 +188,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighSINR3_([0-9]{5})_cp",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "m_cellId",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": ""
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 24,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3servingId\\(m_cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3servingId m_cellId",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "L3servingId\\(m_cellId\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighSINR3_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -536,7 +267,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR1_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighSINR1_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -546,98 +277,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighSINR1_([0-9]{5})_cp",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "convertedSinr",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": ""
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 24
-      },
-      "id": 22,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3neighSINR3gpp1\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3neighSINR3gpp1",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "L3neighSINR3gpp1\\(convertedSinr\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighSINR1_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -716,7 +357,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighId2\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighId2\\(cellId\\)_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -726,98 +367,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighId2\\(cellId\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "convertedSinr",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": ""
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 32
-      },
-      "id": 18,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /L3neighSINR3gpp3\\(convertedSinr\\)_[0-9]{5}_cp/ WHERE $timeFilter\n",
-          "rawQuery": true,
-          "refId": "A"
-        }
-      ],
-      "title": "L3neighSINR3gpp3",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "L3neighSINR3gpp3\\(convertedSinr\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighId2\\(cellId\\)_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -895,7 +446,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighSINR2_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighSINR2_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -905,8 +456,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighSINR2_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighSINR2_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -985,7 +536,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighId3\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighId3\\(cellId\\)_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -995,8 +546,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighId3\\(cellId\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighId3\\(cellId\\)_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
@@ -1075,7 +626,7 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /L3neighId1\\(cellId\\)_[0-9]{5}_cp/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /L3neighId1\\(cellId\\)_cell_[0-5]/ WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A"
         }
@@ -1085,8 +636,8 @@
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "L3neighId1\\(cellId\\)_([0-9]{5})_cp",
-            "renamePattern": "$1"
+            "regex": "L3neighId1\\(cellId\\)_cell_([0-5])",
+            "renamePattern": "cell $1"
           }
         }
       ],
