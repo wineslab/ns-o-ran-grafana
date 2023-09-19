@@ -30,6 +30,7 @@ services:
       - influxdb
     ports:
       - '3000:3000'
+    command: sh -c "echo \"1,2,3\" > provacsv.csv"
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/

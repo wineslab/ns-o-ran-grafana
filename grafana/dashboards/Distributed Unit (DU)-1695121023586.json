@@ -524,7 +524,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -702,7 +702,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "kbps"
         },
         "overrides": []
       },
@@ -791,7 +791,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -880,7 +880,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "kbps"
         },
         "overrides": []
       },

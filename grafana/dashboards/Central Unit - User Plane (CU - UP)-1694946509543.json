@@ -377,7 +377,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "ms"
         },
         "overrides": []
       },
