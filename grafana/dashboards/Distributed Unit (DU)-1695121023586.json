@@ -196,7 +196,7 @@
           "refId": "A"
         }
       ],
-      "title": "DRB_MeanActiveUeDl",
+      "title": "Mean Active UEs Downlink",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -216,7 +216,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "",
+            "axisLabel": "DRB_MeanActiveUeDl",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -346,7 +346,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -1948,7 +1948,7 @@
               }
             ]
           },
-          "unit": ""
+          "unit": "percent"
         },
         "overrides": []
       },
