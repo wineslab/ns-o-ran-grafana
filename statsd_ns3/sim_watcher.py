@@ -178,6 +178,21 @@ class SimWatcher(PatternMatchingEventHandler):
             if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
                 values[i] = values[i]*pow(10, -1)
 
+            if field == 'L3 serving Id(m_cellId)' or field == 'L3 serving SINR' or field == 'L3 serving SINR 3gpp' or field == 'L3 neigh Id 1 (cellId)' or field == 'L3 neigh SINR 1' or field == 'L3 neigh SINR 3gpp 1 (convertedSinr)' or field == 'L3 neigh Id 2 (cellId)' or field == 'L3 neigh SINR 2' or field == 'L3 neigh SINR 3gpp 2 (convertedSinr)' or field == 'L3 neigh Id 3 (cellId)' or field == 'L3 neigh SINR 3' or field == 'L3 neigh SINR 3gpp 3 (convertedSinr)' or field == 'L3 neigh Id 4 (cellId)' or field == 'L3 neigh SINR 4' or field == 'L3 neigh SINR 3gpp 4 (convertedSinr)' or field == 'L3 neigh Id 5 (cellId)' or field == 'L3 neigh SINR 5' or field == 'L3 neigh SINR 3gpp 5 (convertedSinr)' or field == 'L3 neigh Id 6 (cellId)' or field == 'L3 neigh SINR 6' or field == 'L3 neigh SINR 3gpp 6 (convertedSinr)' or field == 'L3 neigh Id 7 (cellId)' or field == 'L3 neigh SINR 7' or field == 'L3 neigh SINR 3gpp 7 (convertedSinr)' or field == 'L3 neigh Id 8 (cellId)' or field == 'L3 neigh SINR 8' or field == 'L3 neigh SINR 3gpp 8 (convertedSinr)':
+
+                stat = field + '_' + ue
+                if file_type == 0 or file_type == 3:
+                    stat += '_up'
+                if file_type == 1 or file_type == 4:
+                    stat += '_cp'
+                if file_type == 2:
+                    stat += '_du'
+                stat = stat.replace(' ','')
+                pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
+                i+=1
+                continue
+                        
+
             if 'UEID' not in field:
                 stat = field + '_cell_' + values[-1]
                 stat = stat.replace(' ','')
