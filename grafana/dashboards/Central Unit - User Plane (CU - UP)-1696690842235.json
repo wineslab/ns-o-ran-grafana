@@ -95,7 +95,7 @@
           "refId": "A"
         }
       ],
-      "title": "QoS PDCP PDU",
+      "title": "QoS PDCP PDU per UE",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -185,7 +185,7 @@
           "refId": "A"
         }
       ],
-      "title": "PDCP PDU Volume",
+      "title": "PDCP PDU Volume per UE",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -275,7 +275,7 @@
           "refId": "A"
         }
       ],
-      "title": "PDCP PDU TX DL Packets",
+      "title": "PDCP PDU TX DL Packets per UE",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -405,7 +405,7 @@
           ]
         }
       ],
-      "title": "Cell PDCP Latency",
+      "title": "Cell PDCP Latency per UE",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -426,7 +426,7 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisLabel": "m_pDCPBytesDL",
+            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
@@ -438,6 +438,9 @@
               "viz": false
             },
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -477,7 +480,7 @@
         "x": 0,
         "y": 16
       },
-      "id": 14,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -490,17 +493,17 @@
       },
       "targets": [
         {
-          "query": "SELECT \"value\" FROM /m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_[0-9]/ WHERE $timeFilter",
+          "query": "SELECT \"value\" FROM /DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_[0-9]{5}_up/ WHERE $timeFilter",
           "rawQuery": true,
-          "refId": "A"
+          "refId": "tx_bytes"
         }
       ],
-      "title": "Cell PDCP Volume ",
+      "title": "Tx Bytes per UE",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_([0-9])",
+            "regex": "DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_([0-9]{5})_up",
             "renamePattern": "$1"
           }
         }
@@ -585,105 +588,12 @@
           "refId": "A"
         }
       ],
-      "title": "PDCP Throughput",
+      "title": "PDCP Throughput per UE",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
             "regex": "DRB.PdcpSduBitRateDl.UEID\\(pdcpThroughput\\)_([0-9]{5})_up",
-            "renamePattern": "$1"
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "description": "only eNB (cell 1)",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "DRB.PdcpSduVolumeDl_Filter.UEID",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "kbit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 24
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single"
-        }
-      },
-      "targets": [
-        {
-          "query": "SELECT \"value\" FROM /DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_[0-9]{5}_up/ WHERE $timeFilter",
-          "rawQuery": true,
-          "refId": "tx_bytes"
-        }
-      ],
-      "title": "Tx Bytes",
-      "transformations": [
-        {
-          "id": "renameByRegex",
-          "options": {
-            "regex": "DRB.PdcpSduVolumeDl_Filter.UEID\\(txBytes\\)_([0-9]{5})_up",
             "renamePattern": "$1"
           }
         }
@@ -772,8 +682,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 32
+        "x": 0,
+        "y": 24
       },
       "id": 6,
       "options": {
@@ -793,12 +703,102 @@
           "refId": "A"
         }
       ],
-      "title": "Cell Average Latency",
+      "title": "Cell Average Latency per Cell",
       "transformations": [
         {
           "id": "renameByRegex",
           "options": {
-            "regex": "DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_cell_([0-9])",
+            "regex": "DRB.PdcpSduDelayDl\\(cellAverageLatency\\)_cell_([0-5])",
+            "renamePattern": "$1"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "only eNB (cell 1)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "m_pDCPBytesDL",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "kbit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "query": "SELECT \"value\" FROM /m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_[0-9]/ WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cell PDCP Volume per Cell",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "m_pDCPBytesDL\\(cellDlTxVolume\\)_cell_([0-9])",
             "renamePattern": "$1"
           }
         }
@@ -806,7 +806,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 30,
   "style": "dark",
   "tags": [],
@@ -814,8 +814,8 @@
     "list": []
   },
   "time": {
-    "from": "2023-10-07T08:44:56.802Z",
-    "to": "2023-10-07T08:44:57.204Z"
+    "from": "2023-10-07T14:05:57.575Z",
+    "to": "2023-10-07T14:06:00.933Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -825,5 +825,5 @@
   "timezone": "",
   "title": "Central Unit - User Plane (CU - UP)",
   "uid": "SDOyaFLVz",
-  "version": 5
+  "version": 18
 }
