@@ -171,6 +171,15 @@ class SimWatcher(PatternMatchingEventHandler):
         i = 0
         for field in fields:
 
+            # to create the panel near L3servingSINR: L3servingId
+            if field == 'file_id_number' and (file_type == 1 or file_type == 4):
+                stat = 'L3servingID_' + ue + '_cp'
+                stat = stat.replace(' ', '')
+                pipe.gauge(stat=stat, value = int(values[i]), tags={'timestamp':timestamp})
+                i+=1
+                continue
+
+
             if field == 'file_id_number':
                 continue
 
