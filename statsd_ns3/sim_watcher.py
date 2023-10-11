@@ -129,7 +129,7 @@ class SimWatcher(PatternMatchingEventHandler):
                     self.kpm_map[key].append(regex.group(1))      # last item of list will be file_id_number
 
                     self.consumed_keys.add(key)
-                    self._send_to_telegraf(ue=ue, values=self.kpm_map[key], fields=fields, file_type=key[2])
+                    self._send_to_telegraf(ue = ue, values = self.kpm_map[key], fields = fields, file_type = key[2])
 
         lock.release()
 
@@ -175,8 +175,8 @@ class SimWatcher(PatternMatchingEventHandler):
             if field == 'file_id_number' and (file_type == 1 or file_type == 4):
                 stat = 'L3servingID_' + ue + '_cp'
                 stat = stat.replace(' ', '')
-                pipe.gauge(stat=stat, value = int(values[i]), tags={'timestamp':timestamp})
-                i+=1
+                pipe.gauge(stat = stat, value = int(values[i]), tags = {'timestamp':timestamp})
+                i += 1
                 continue
 
 
@@ -197,16 +197,16 @@ class SimWatcher(PatternMatchingEventHandler):
                 if file_type == 2:
                     stat += '_du'
                 stat = stat.replace(' ','')
-                pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
-                i+=1
+                pipe.gauge(stat = stat, value = values[i], tags = {'timestamp':timestamp})
+                i += 1
                 continue
                         
 
             if 'UEID' not in field:
                 stat = field + '_cell_' + values[-1]
                 stat = stat.replace(' ','')
-                pipe.gauge(stat=stat, value=values[i], tags={'timestamp':timestamp})
-                i+=1
+                pipe.gauge(stat = stat, value = values[i], tags = {'timestamp':timestamp})
+                i += 1
                 continue
 
             stat = field + '_' + ue
@@ -217,8 +217,8 @@ class SimWatcher(PatternMatchingEventHandler):
             if file_type == 2:
                 stat += '_du'
             stat = stat.replace(' ','')
-            pipe.gauge(stat=stat, value = values[i], tags={'timestamp':timestamp})
-            i+=1
+            pipe.gauge(stat = stat, value = values[i], tags = {'timestamp':timestamp})
+            i += 1
         pipe.send()
 
 
