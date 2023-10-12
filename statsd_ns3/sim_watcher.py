@@ -13,6 +13,7 @@ lock = threading.Lock()
 
 class SimWatcher(PatternMatchingEventHandler):
     
+
     """
     A Python event handler that looks for specific .txt formatted as csv files, parses data from them, and sends it to Telegraf as part of a watchdog object.
 
@@ -61,6 +62,7 @@ class SimWatcher(PatternMatchingEventHandler):
     telegraf_host = "localhost"
     telegraf_port = 8125
     statsd_client = StatsClient(telegraf_host, telegraf_port, prefix = None)
+
 
     def __init__(self):
 
@@ -141,7 +143,11 @@ class SimWatcher(PatternMatchingEventHandler):
 
         super().on_closed(event)
 
+
+    L3_SINR_id = ['L3 serving Id(m_cellId)', 'L3 serving SINR', 'L3 serving SINR 3gpp','L3 neigh Id 1 (cellId)', 'L3 neigh SINR 1', 'L3 neigh SINR 3gpp 1 (convertedSinr)', 'L3 neigh Id 2 (cellId)', 'L3 neigh SINR 2', 'L3 neigh SINR 3gpp 2 (convertedSinr)', 'L3 neigh Id 3 (cellId)', 'L3 neigh SINR 3', 'L3 neigh SINR 3gpp 3 (convertedSinr)', 'L3 neigh Id 4 (cellId)', 'L3 neigh SINR 4', 'L3 neigh SINR 3gpp 4 (convertedSinr)', 'L3 neigh Id 5 (cellId)', 'L3 neigh SINR 5', 'L3 neigh SINR 3gpp 5 (convertedSinr)', 'L3 neigh Id 6 (cellId)', 'L3 neigh SINR 6', 'L3 neigh SINR 3gpp 6 (convertedSinr)', 'L3 neigh Id 7 (cellId)', 'L3 neigh SINR 7', 'L3 neigh SINR 3gpp 7 (convertedSinr)', 'L3 neigh Id 8 (cellId)', 'L3 neigh SINR 8', 'L3 neigh SINR 3gpp 8 (convertedSinr)']
     def _send_to_telegraf(self, ue:int, values:List, fields:List, file_type:int):
+
+      
 
         """
         Formats and sends data to the Telegraf agent.
@@ -187,7 +193,7 @@ class SimWatcher(PatternMatchingEventHandler):
             if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
                 values[i] = values[i]*pow(10, -1)
 
-            if field == 'L3 serving Id(m_cellId)' or field == 'L3 serving SINR' or field == 'L3 serving SINR 3gpp' or field == 'L3 neigh Id 1 (cellId)' or field == 'L3 neigh SINR 1' or field == 'L3 neigh SINR 3gpp 1 (convertedSinr)' or field == 'L3 neigh Id 2 (cellId)' or field == 'L3 neigh SINR 2' or field == 'L3 neigh SINR 3gpp 2 (convertedSinr)' or field == 'L3 neigh Id 3 (cellId)' or field == 'L3 neigh SINR 3' or field == 'L3 neigh SINR 3gpp 3 (convertedSinr)' or field == 'L3 neigh Id 4 (cellId)' or field == 'L3 neigh SINR 4' or field == 'L3 neigh SINR 3gpp 4 (convertedSinr)' or field == 'L3 neigh Id 5 (cellId)' or field == 'L3 neigh SINR 5' or field == 'L3 neigh SINR 3gpp 5 (convertedSinr)' or field == 'L3 neigh Id 6 (cellId)' or field == 'L3 neigh SINR 6' or field == 'L3 neigh SINR 3gpp 6 (convertedSinr)' or field == 'L3 neigh Id 7 (cellId)' or field == 'L3 neigh SINR 7' or field == 'L3 neigh SINR 3gpp 7 (convertedSinr)' or field == 'L3 neigh Id 8 (cellId)' or field == 'L3 neigh SINR 8' or field == 'L3 neigh SINR 3gpp 8 (convertedSinr)':
+            if field in self.L3_SINR_id:
 
                 stat = field + '_' + ue
                 if file_type == 0 or file_type == 3:
