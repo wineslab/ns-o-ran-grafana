@@ -13,7 +13,6 @@ lock = threading.Lock()
 
 class SimWatcher(PatternMatchingEventHandler):
     
-
     """
     A Python event handler that looks for specific .txt formatted as csv files, parses data from them, and sends it to Telegraf as part of a watchdog object.
 
@@ -37,7 +36,6 @@ class SimWatcher(PatternMatchingEventHandler):
     statsd_client : StatsClient
         The StatsD client for sending metrics to Telegraf automatically created by default with the above parameters.
 
-        
     Methods
     -------
     __init__(self)
@@ -62,7 +60,6 @@ class SimWatcher(PatternMatchingEventHandler):
     telegraf_host = "localhost"
     telegraf_port = 8125
     statsd_client = StatsClient(telegraf_host, telegraf_port, prefix = None)
-
 
     def __init__(self):
 
@@ -112,7 +109,6 @@ class SimWatcher(PatternMatchingEventHandler):
                 if file.name == './cu-cp-cell-1.txt':
                     key = (timestamp, ue_imsi, 4)   # same here
 
-
                 if key not in self.consumed_keys:
 
                     if key not in self.kpm_map:
@@ -144,10 +140,8 @@ class SimWatcher(PatternMatchingEventHandler):
         super().on_closed(event)
 
 
-    L3_SINR_id = ['L3 serving Id(m_cellId)', 'L3 serving SINR', 'L3 serving SINR 3gpp','L3 neigh Id 1 (cellId)', 'L3 neigh SINR 1', 'L3 neigh SINR 3gpp 1 (convertedSinr)', 'L3 neigh Id 2 (cellId)', 'L3 neigh SINR 2', 'L3 neigh SINR 3gpp 2 (convertedSinr)', 'L3 neigh Id 3 (cellId)', 'L3 neigh SINR 3', 'L3 neigh SINR 3gpp 3 (convertedSinr)', 'L3 neigh Id 4 (cellId)', 'L3 neigh SINR 4', 'L3 neigh SINR 3gpp 4 (convertedSinr)', 'L3 neigh Id 5 (cellId)', 'L3 neigh SINR 5', 'L3 neigh SINR 3gpp 5 (convertedSinr)', 'L3 neigh Id 6 (cellId)', 'L3 neigh SINR 6', 'L3 neigh SINR 3gpp 6 (convertedSinr)', 'L3 neigh Id 7 (cellId)', 'L3 neigh SINR 7', 'L3 neigh SINR 3gpp 7 (convertedSinr)', 'L3 neigh Id 8 (cellId)', 'L3 neigh SINR 8', 'L3 neigh SINR 3gpp 8 (convertedSinr)']
+    l3sinr_fieldnames = ['L3 serving Id(m_cellId)', 'L3 serving SINR', 'L3 serving SINR 3gpp','L3 neigh Id 1 (cellId)', 'L3 neigh SINR 1', 'L3 neigh SINR 3gpp 1 (convertedSinr)', 'L3 neigh Id 2 (cellId)', 'L3 neigh SINR 2', 'L3 neigh SINR 3gpp 2 (convertedSinr)', 'L3 neigh Id 3 (cellId)', 'L3 neigh SINR 3', 'L3 neigh SINR 3gpp 3 (convertedSinr)', 'L3 neigh Id 4 (cellId)', 'L3 neigh SINR 4', 'L3 neigh SINR 3gpp 4 (convertedSinr)', 'L3 neigh Id 5 (cellId)', 'L3 neigh SINR 5', 'L3 neigh SINR 3gpp 5 (convertedSinr)', 'L3 neigh Id 6 (cellId)', 'L3 neigh SINR 6', 'L3 neigh SINR 3gpp 6 (convertedSinr)', 'L3 neigh Id 7 (cellId)', 'L3 neigh SINR 7', 'L3 neigh SINR 3gpp 7 (convertedSinr)', 'L3 neigh Id 8 (cellId)', 'L3 neigh SINR 8', 'L3 neigh SINR 3gpp 8 (convertedSinr)']
     def _send_to_telegraf(self, ue:int, values:List, fields:List, file_type:int):
-
-      
 
         """
         Formats and sends data to the Telegraf agent.
@@ -161,7 +155,7 @@ class SimWatcher(PatternMatchingEventHandler):
         fields : List
             List of field names corresponding to the metrics in the values parameter.
         file_type: int
-            Ranges from 1 to 3. Represents if the metrics come from a up, cu or du file respectively.
+            Ranges from 0 to 4. Represents if the metrics come from a up (0), cp (1) or du (2) file. Values 3 and 4 are respectively for up and cp eNB cell.
 
         Notes
         -----
@@ -178,13 +172,13 @@ class SimWatcher(PatternMatchingEventHandler):
         for field in fields:
 
             # to create the panel near L3servingSINR: L3servingId
+            # TODO: make it independent from the scenario
             if field == 'file_id_number' and (file_type == 1 or file_type == 4):
                 stat = 'L3servingID_' + ue + '_cp'
                 stat = stat.replace(' ', '')
                 pipe.gauge(stat = stat, value = int(values[i]), tags = {'timestamp':timestamp})
                 i += 1
                 continue
-
 
             if field == 'file_id_number':
                 continue
@@ -193,7 +187,7 @@ class SimWatcher(PatternMatchingEventHandler):
             if field == 'DRB.PdcpSduDelayDl.UEID (pdcpLatency)':
                 values[i] = values[i]*pow(10, -1)
 
-            if field in self.L3_SINR_id:
+            if field in self.l3sinr_fieldnames:
 
                 stat = field + '_' + ue
                 if file_type == 0 or file_type == 3:
@@ -207,7 +201,6 @@ class SimWatcher(PatternMatchingEventHandler):
                 i += 1
                 continue
                         
-
             if 'UEID' not in field:
                 stat = field + '_cell_' + values[-1]
                 stat = stat.replace(' ','')
@@ -226,7 +219,6 @@ class SimWatcher(PatternMatchingEventHandler):
             pipe.gauge(stat = stat, value = values[i], tags = {'timestamp':timestamp})
             i += 1
         pipe.send()
-
 
 if __name__ == "__main__":
     event_handler = SimWatcher()
