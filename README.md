@@ -1,6 +1,6 @@
-# Graphical Visualization of simulated ns3 data with Grafana
+# Graphical Visualization of simulated ns-3 data with Grafana
 
-This example showcases graphical data visualization using Grafana. Data is extracted from a 5G ns3 simulation into csv files and sent to an InfluxDB server via Telegraf. Grafana then gathers data and plots it on a dashboard, allowing for easier analysis and interpretation. We created four dashboards to showcase all the data generated from "cu-up", "cu-cp" and "du" files within the simulation container. The forth dashboard plots aggregated data of interest.  
+This example showcases graphical data visualization using Grafana. Data is extracted from a 5G ns-3 simulation into csv files and sent to an InfluxDB server via Telegraf. Grafana then gathers data and plots it on a dashboard, allowing for easier analysis and interpretation. We created four dashboards to showcase all the data generated from "cu-up", "cu-cp" and "du" files within the simulation container. The forth dashboard plots aggregated data of interest.  
 
 ## Services and Ports
 
